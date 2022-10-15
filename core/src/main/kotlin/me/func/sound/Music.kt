@@ -3,6 +3,7 @@ package me.func.sound
 import io.netty.channel.ChannelDuplexHandler
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.ChannelPromise
+import me.func.mod.Anime
 import me.func.mod.conversation.ModLoader
 import me.func.mod.conversation.ModTransfer
 import me.func.mod.util.listener
@@ -37,6 +38,12 @@ object Music : Listener {
 
     @JvmStatic
     fun unblock(category: Category) = apply { blockedCategories.remove(category.ordinal) }
+
+    @JvmStatic
+    fun stopSound(vararg player: Player) = ModTransfer().send("func:sound-stop", *player)
+
+    @JvmStatic
+    fun stopSound(player: Collection<Player>) = stopSound(*player.toTypedArray())
 
     @EventHandler
     fun PlayerJoinEvent.handle() {

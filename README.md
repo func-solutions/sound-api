@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'me.func:sound-api:1.0.3' // сама библиотека
+    implementation 'me.func:sound-api:1.0.5' // сама библиотека
     implementation 'me.func:animation-api:3.8.3' // нужная библиотека для работы
 }
 ```
@@ -30,6 +30,10 @@ dependencies {
 Music // этот класс нужно дергать в onEnable, чтобы все загрузилось
     .block(Category.VOICE) 
     .block(Category.PLAYERS) // выключить звуки игроков
+```
+
+```kotlin
+Music.stopSound(player, ...) // остановить музыку
 ```
 
 Билдер Sound (инструмент для включения звуков игроку)

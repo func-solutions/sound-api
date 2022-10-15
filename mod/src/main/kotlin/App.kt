@@ -26,6 +26,10 @@ class App : KotlinMod() {
         UIEngine.initialize(this)
         Files.createDirectories(musicDir)
 
+        registerChannel("func:sound-stop") {
+            stopSound()
+        }
+
         registerChannel("func:sound") {
 
             val url = NetUtil.readUtf8(this)
@@ -59,15 +63,19 @@ class App : KotlinMod() {
         }
     }
 
-    private fun playSound(url: String, sound: SoundRequest.Builder) {
-
-        println("Player sound: $url")
-
+    private fun stopSound() {
         if (currentSound != null) {
             clientApi.soundHandler().stopSound(currentSound)
             currentSound = null
             currentSoundKey = null
         }
+    }
+
+    private fun playSound(url: String, sound: SoundRequest.Builder) {
+
+        println("Player sound: $url")
+
+        stopSound()
 
         getSoundRequest(url, sound).thenAccept {
             if (it == null) {
