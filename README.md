@@ -39,7 +39,7 @@ Music.stopSound(player, ...) // остановить музыку
 Билдер Sound (инструмент для включения звуков игроку)
 ```kotlin
 Sound("ссылка на .ogg файл") // если не работает, попробуйте Vorbis кодировку
-    .category(Category.MASTER) // категория звука
+    .category(Category.WEATHER) // категория звука (природа)
     .pitch(1.0f) // высота
     .volume(0.5f) // громкость
     .location(player.location) // локация (можно не указывать)
